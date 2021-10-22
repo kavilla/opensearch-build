@@ -152,10 +152,10 @@ void publish() {
     script { manifest = readYaml(file: 'artifacts/manifest.yml') }
     def artifactPath = "${manifest.build.version}/${BUILD_NUMBER}/${manifest.build.platform}-${manifest.build.architecture}";
 
-    withAWS(role: 'opensearch-bundle', roleAccount: "${AWS_ACCOUNT_PUBLIC}", duration: 900, roleSessionName: 'jenkins-session') {
-        s3Upload(file: 'artifacts', bucket: "${ARTIFACT_BUCKET_NAME}", path: "builds/opensearch-dashboards/${artifactPath}")
-        s3Upload(file: "bundle", bucket: "${ARTIFACT_BUCKET_NAME}", path: "bundles/opensearch-dashboards/${artifactPath}")
-    }
+    // withAWS(role: 'opensearch-bundle', roleAccount: "${AWS_ACCOUNT_PUBLIC}", duration: 900, roleSessionName: 'jenkins-session') {
+    //     s3Upload(file: 'artifacts', bucket: "${ARTIFACT_BUCKET_NAME}", path: "builds/opensearch-dashboards/${artifactPath}")
+    //     s3Upload(file: "bundle", bucket: "${ARTIFACT_BUCKET_NAME}", path: "bundles/opensearch-dashboards/${artifactPath}")
+    // }
 
     addJenkinsMessage("${PUBLIC_ARTIFACT_URL}/builds/opensearch-dashboards/${artifactPath}/manifest.yml\n" +
                       "${PUBLIC_ARTIFACT_URL}/bundles/opensearch-dashboards/${artifactPath}/manifest.yml")
@@ -163,9 +163,9 @@ void publish() {
 
 /** Publishes a notification to a slack instance*/
 void publishNotification(icon, msg, extra) {
-    withCredentials([string(credentialsId: 'BUILD_NOTICE_WEBHOOK', variable: 'TOKEN')]) {
-        sh("""curl -XPOST --header "Content-Type: application/json" --data '{"result_text": "$icon ${env.JOB_NAME} [${env.BUILD_NUMBER}] $msg ${env.BUILD_URL}\nManifest: ${INPUT_MANIFEST} $extra"}' """ + "$TOKEN")
-    }
+    // withCredentials([string(credentialsId: 'BUILD_NOTICE_WEBHOOK', variable: 'TOKEN')]) {
+    //     sh("""curl -XPOST --header "Content-Type: application/json" --data '{"result_text": "$icon ${env.JOB_NAME} [${env.BUILD_NUMBER}] $msg ${env.BUILD_URL}\nManifest: ${INPUT_MANIFEST} $extra"}' """ + "$TOKEN")
+    // }
 }
 
 /** Add a message to the jenkins queue */

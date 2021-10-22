@@ -27,22 +27,25 @@ pipeline {
         stage('detect Docker image + args to use for the build') {
             steps {
                 script { 
-                    manifest = readYaml(file: "manifests/$INPUT_MANIFEST") 
-                    
-                    dockerImage = "${manifest.ci?.image?.name}" 
-                    // If the 'image' key is not present, it is populated with "null" string 
-                    if (dockerImage == null || dockerImage == "null") {
-                        error("The Docker image for the build is required but was not provided in the manifest")
-                    }
+                    node {
 
-                    dockerArgs = "${manifest.ci?.image?.args}" 
-                    // If the 'args' key is not present, it is populated with "null" string 
-                    if (dockerArgs == null || dockerArgs == "null") {
-                        dockerArgs = ''
-                    }
+                        manifest = readYaml(file: "manifests/$INPUT_MANIFEST") 
+                        
+                        dockerImage = "${manifest.ci?.image?.name}" 
+                        // If the 'image' key is not present, it is populated with "null" string 
+                        if (dockerImage == null || dockerImage == "null") {
+                            error("The Docker image for the build is required but was not provided in the manifest")
+                        }
 
-                    echo "Using Docker image: " + dockerImage
-                    echo "Using Docker container args: " + dockerArgs
+                        dockerArgs = "${manifest.ci?.image?.args}" 
+                        // If the 'args' key is not present, it is populated with "null" string 
+                        if (dockerArgs == null || dockerArgs == "null") {
+                            dockerArgs = ''
+                        }
+
+                        echo "Using Docker image: " + dockerImage
+                        echo "Using Docker container args: " + dockerArgs
+                    }
                 }
             }
         }
@@ -99,7 +102,8 @@ pipeline {
                             agent {
                                 docker {
                                     label 'Jenkins-Agent-al2-arm64-c6g4xlarge-Docker-Host'
-                                    image 'opensearchstaging/ci-runner:centos7-x64-arm64-jdk14-node10.24.1-cypress6.9.1-20211005'
+                                    image dockerImage
+                                    args dockerArgs
                                     alwaysPull true
                                 }
                             }
@@ -137,13 +141,13 @@ pipeline {
 }
 
 void build(platform, architecture) {
-    git url: 'https://github.com/opensearch-project/opensearch-build.git', branch: 'main'
+    git url: 'https://github.com/kavilla/opensearch-build.git', branch: 'avillk/fix_docker_stage'
 
     sh "./build.sh manifests/$INPUT_MANIFEST -p $platform -a $architecture"
 }
 
 void assemble() {
-    git url: 'https://github.com/opensearch-project/opensearch-build.git', branch: 'main'
+    git url: 'https://github.com/kavilla/opensearch-build.git', branch: 'avillk/fix_docker_stage'
 
     sh './assemble.sh artifacts/manifest.yml'
 }

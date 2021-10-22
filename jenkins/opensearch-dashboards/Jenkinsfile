@@ -25,7 +25,12 @@ pipeline {
             }
         }
         stage('detect Docker image + args to use for the build') {
-            agent any
+            agent {
+                docker {
+                    label 'Jenkins-Agent-al2-x64-c54xlarge-Docker-Host'
+                    alwaysPull true
+                }
+            }
             steps {
                 script { 
                     manifest = readYaml(file: "manifests/$INPUT_MANIFEST") 

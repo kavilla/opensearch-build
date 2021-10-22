@@ -26,9 +26,8 @@ pipeline {
         }
         stage('detect Docker image + args to use for the build') {
             steps {
-                script { 
-                    node {
-
+                node {
+                    script { 
                         manifest = readYaml(file: "manifests/$INPUT_MANIFEST") 
                         
                         dockerImage = "${manifest.ci?.image?.name}" 

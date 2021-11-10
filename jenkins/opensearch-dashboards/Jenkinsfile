@@ -159,13 +159,13 @@ pipeline {
 }
 
 void build(platform, architecture) {
-    git url: 'https://github.com/opensearch-project/opensearch-build.git', branch: 'main'
+    git url: 'https://github.com/kavilla/opensearch-build.git', branch: 'avillk/jli-add-chromium-to-reports'
 
     sh "./build.sh manifests/$INPUT_MANIFEST -p $platform -a $architecture"
 }
 
 void assemble() {
-    git url: 'https://github.com/opensearch-project/opensearch-build.git', branch: 'main'
+    git url: 'https://github.com/kavilla/opensearch-build.git', branch: 'avillk/jli-add-chromium-to-reports'
 
     script { manifest = readYaml(file: 'builds/manifest.yml') }
 

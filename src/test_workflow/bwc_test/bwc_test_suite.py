@@ -47,3 +47,17 @@ class BwcTestSuite:
         for component in self.manifest.components.select(focus=self.component):
             # TODO: Store and report test results, send notification via {console_output}
             self.component_bwc_tests(component)
+
+    def is_security_enabled(self, config):
+        if config in ["with-security", "without-security"]:
+            return True if config == "with-security" else False
+        else:
+            raise InvalidTestConfigError("Unsupported test config: " + config)
+
+    def pretty_print_message(self, message):
+        logging.info("===============================================")
+        logging.info(message)
+        logging.info("===============================================")
+
+class InvalidTestConfigError(Exception):
+    pass

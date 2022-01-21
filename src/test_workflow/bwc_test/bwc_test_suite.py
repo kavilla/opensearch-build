@@ -59,7 +59,7 @@ class BwcTestSuite:
 
         script = ScriptFinder.find_bwc_test_script(self.component.name, self.repo.working_directory)
         if os.path.exists(script):
-            cmd = f"{script} -s {str(security).lower()}"
+            cmd = f"{script} -s {str(security).lower()} -d {self.manifest.build.location}"
             self.repo_work_dir = os.path.join(
                 self.repo.dir, self.test_config.working_directory) if self.test_config.working_directory is not None else self.repo.dir
             (status, stdout, stderr) = execute(cmd, self.repo_work_dir, True, False)

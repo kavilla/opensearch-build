@@ -8,8 +8,8 @@ build:
   version: 1.2.0
 components:
   - name: OpenSearch-Dashboards
-    ref: tags/1.2.0
-    repository: https://github.com/opensearch-project/OpenSearch-Dashboards.git
+    ref: avillk/1.2.0/track_total_hits
+    repository: https://github.com/kavilla/OpenSearch-Dashboards-1.git
   - name: alertingDashboards
     repository: https://github.com/opensearch-project/alerting-dashboards-plugin
     ref: tags/1.2.0.0

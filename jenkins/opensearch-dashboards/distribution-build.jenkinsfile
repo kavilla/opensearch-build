@@ -10,7 +10,7 @@ pipeline {
         )
     }
     options {
-        copyArtifactPermission("${JOB_NAME}")
+        // copyArtifactPermission("${JOB_NAME}")
         buildDiscarder(logRotator(artifactNumToKeepStr: '1'))
     }
     stages {
@@ -107,15 +107,15 @@ pipeline {
                 }
             }
         }
-        stage('docker build') {
-            steps {
-                node('Jenkins-Agent-al2-x64-c54xlarge-Docker-Host') {
-                    script {
-                        buildDockerImage()
-                    }
-                }
-            }
-        }
+        // stage('docker build') {
+        //     steps {
+        //         node('Jenkins-Agent-al2-x64-c54xlarge-Docker-Host') {
+        //             script {
+        //                 buildDockerImage()
+        //             }
+        //         }
+        //     }
+        // }
     }
     post {
         success {

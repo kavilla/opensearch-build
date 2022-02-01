@@ -11,8 +11,8 @@ components:
     ref: avillk/1.2.0/track_total_hits
     repository: https://github.com/kavilla/OpenSearch-Dashboards-1.git
   - name: alertingDashboards
-    repository: https://github.com/opensearch-project/alerting-dashboards-plugin
-    ref: tags/1.2.0.0
+    repository: https://github.com/kavilla/alerting-dashboards-plugin.git
+    ref: avillk/1.2.0.0/track_total_hits
   # - name: functionalTestDashboards
   #   repository: https://github.com/opensearch-project/opensearch-dashboards-functional-test.git
   #   ref: main

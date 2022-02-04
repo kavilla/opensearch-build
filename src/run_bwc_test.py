@@ -9,7 +9,6 @@ import sys
 
 from manifests.test_manifest import TestManifest
 from system import console
-from test_workflow.bwc_test.bwc_test_suite import BwcTestSuite
 from test_workflow.bwc_test.bwc_test_runners import BwcTestRunners
 from test_workflow.test_args import TestArgs
 
@@ -17,7 +16,7 @@ from test_workflow.test_args import TestArgs
 def main():
     args = TestArgs()
 
-        # Any logging.info call preceding to next line in the execution chain will make the console output not displaying logs in console.
+    # Any logging.info call preceding to next line in the execution chain will make the console output not displaying logs in console.
     console.configure(level=args.logging_level)
 
     test_manifest = TestManifest.from_path(args.test_manifest_path)

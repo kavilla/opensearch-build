@@ -71,7 +71,7 @@ class BwcTestSuite(abc.ABC):
                 stderr,
                 self.test_artifact_files
             )
-            # self.save_logs.save_test_result_data(test_result_data)
+            self.save_logs.save_test_result_data(test_result_data)
             if stderr:
                 logging.info("BWC test run failed for component " + self.component.name)
                 logging.info(stderr)

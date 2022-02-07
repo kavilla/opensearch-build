@@ -21,7 +21,6 @@ class BwcTestSuiteOpenSearch(BwcTestSuite):
     ):
 
         super().__init__(
-            self, 
             work_dir,
             component,
             test_config,

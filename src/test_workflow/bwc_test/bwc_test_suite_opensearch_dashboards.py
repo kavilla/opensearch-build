@@ -21,7 +21,6 @@ class BwcTestSuiteOpenSearchDashboards(BwcTestSuite):
     ):
 
         super().__init__(
-            self, 
             work_dir,
             component,
             test_config,
@@ -32,7 +31,7 @@ class BwcTestSuiteOpenSearchDashboards(BwcTestSuite):
     @property
     def test_artifact_files(self):
         return {
-            "cypress-videos": os.path.join(self.repo_work_dir, "cypress", "videos"),
-            "cypress-screenshots": os.path.join(self.repo_work_dir, "cypress", "screenshots"),
-            "cypress-report": os.path.join(self.repo_work_dir, "cypress", "results"),
+            "cypress-videos": os.path.join(self.repo_work_dir, "bwc_tmp", "test", "cypress", "videos"),
+            "cypress-screenshots": os.path.join(self.repo_work_dir, "bwc_tmp", "test", "cypress", "screenshots"),
+            "cypress-report": os.path.join(self.repo_work_dir, "bwc_tmp", "test", "cypress", "results"),
         }

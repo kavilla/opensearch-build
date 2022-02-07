@@ -7,6 +7,7 @@
 # Modifications Copyright OpenSearch Contributors. See
 # GitHub history for details.
 
+import abc
 import logging
 import os
 
@@ -18,7 +19,7 @@ from test_workflow.test_result.test_result import TestResult
 from test_workflow.test_recorder.test_result_data import TestResultData
 
 
-class BwcTestSuite:
+class BwcTestSuite(abc.ABC):
 
     def __init__(
         self, 
@@ -34,16 +35,14 @@ class BwcTestSuite:
         self.test_recorder = test_recorder
         self.manifest = manifest
 
-
         self.repo = GitRepository(
             self.component.repository,
             self.component.commit_id,
             os.path.join(self.work_dir, self.component.name),
             test_config.working_directory
         )
-        self.save_logs = test_recorder.test_results_logs
 
-        
+        self.save_logs = test_recorder.test_results_logs       
 
     def execute_tests(self):
         test_results = TestComponentResults()
@@ -91,8 +90,11 @@ class BwcTestSuite:
         logging.info(message)
         logging.info("===============================================")
     
+    @property
+    @abc.abstractmethod
     def test_artifact_files(self):
         pass
+
 
 class InvalidTestConfigError(Exception):
     pass

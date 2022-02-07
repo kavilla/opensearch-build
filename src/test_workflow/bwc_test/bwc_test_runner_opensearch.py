@@ -7,11 +7,10 @@
 import logging
 import os
 
-from manifests.bundle_manifest import BundleManifest
 from manifests.test_manifest import TestManifest
 from test_workflow.bwc_test.bwc_test_runner import BwcTestRunner
 from test_workflow.bwc_test.bwc_test_start_properties_opensearch import BwcTestStartPropertiesOpenSearch
-from test_workflow.bwc_test.bwc_test_suite import BwcTestSuite
+from test_workflow.bwc_test.bwc_test_suite_opensearch import BwcTestSuiteOpenSearch
 from test_workflow.test_args import TestArgs
 
 
@@ -26,7 +25,7 @@ class BwcTestRunnerOpenSearch(BwcTestRunner):
         logging.info("Entering BWC test for OpenSearch")
 
     def __create_test_suite__(self, component, test_config, work_dir):
-        return BwcTestSuite(
+        return BwcTestSuiteOpenSearch(
             work_dir.name,
             component,
             test_config,

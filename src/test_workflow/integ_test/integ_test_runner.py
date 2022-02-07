@@ -24,7 +24,6 @@ class IntegTestRunner(abc.ABC):
 
     def run(self):
         with TemporaryDirectory(keep=self.args.keep, chdir=True) as work_dir:
-
             all_results = TestSuiteResults()
             for component in self.components.select(focus=self.args.component):
                 if component.name in self.test_manifest.components:

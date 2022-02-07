@@ -2,10 +2,18 @@ lib = library(identifier: 'jenkins@20211123', retriever: legacySCM(scm))
 
 pipeline {
     agent none
+    environment {
+        BWC_TEST_JOB_NAME = 'bwc-test'
+    }
     parameters {
         string(
             name: 'INPUT_MANIFEST',
             description: 'Input manifest under the manifests folder, e.g. 2.0.0/opensearch-dashboards-2.0.0.yml.',
+            trim: true
+        )
+        string(
+            name: 'TEST_MANIFEST',
+            description: 'Test manifest under the manifests folder, e.g. 2.0.0/opensearch-2.0.0-test.yml.',
             trim: true
         )
     }
@@ -47,9 +55,30 @@ pipeline {
                                 platform: 'linux',
                                 architecture: 'x64'
                             )
+                            String buildManifestUrl = buildManifestObj.getUrl(JOB_NAME, BUILD_NUMBER)
                             String artifactUrl = buildManifestObj.getArtifactUrl(JOB_NAME, BUILD_NUMBER)
                             env.ARTIFACT_URL_X64 = artifactUrl
+
+                            echo "buildManifestUrl (x64): ${buildManifestUrl}"
                             echo "artifactUrl (x64): ${artifactUrl}"
+
+                            def bwcTestResults = 
+                                build job: BWC_TEST_JOB_NAME,
+                                propagate: false,
+                                wait: true,
+                                parameters: [
+                                    string(name: 'TEST_MANIFEST', value: "manifests/${TEST_MANIFEST}"),
+                                    string(name: 'BUILD_MANIFEST_URL', value: buildManifestUrl)
+                                ]
+
+                            String status = bwcTestResults.getResult()
+                            String icon = status == 'SUCCESS' ? ':white_check_mark:' : ':warning:'
+                            lib.jenkins.Messages.new(this).add(
+                                STAGE_NAME,
+                                lib.jenkins.Messages.new(this).get([STAGE_NAME]) + 
+                                    "\nBwc Tests (x64): ${icon} ${status} ${bwcTestResults.getAbsoluteUrl()}"
+                            )
+
                         }
                     }
                     post {

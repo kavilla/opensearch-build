@@ -8,8 +8,8 @@ ci:
     name: opensearchstaging/ci-runner:ci-runner-centos7-opensearch-dashboards-build
 components:
   - name: OpenSearch-Dashboards
-    ref: main
-    repository: https://github.com/opensearch-project/OpenSearch-Dashboards.git
+    ref: avillk/bwc_test_script
+    repository: https://github.com/kavilla/OpenSearch-Dashboards-1.git 
     checks:
       - npm:package:version
   - name: functionalTestDashboards

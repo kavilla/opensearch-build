@@ -10,7 +10,7 @@ pipeline {
         )
     }
     options {
-        copyArtifactPermission("${JOB_NAME}")
+        copyArtifactPermission("avillk-distribution-build-opensearch-dashboards")
         buildDiscarder(logRotator(artifactNumToKeepStr: '1'))
     }
     stages {

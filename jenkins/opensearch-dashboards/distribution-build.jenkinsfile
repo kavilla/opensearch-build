@@ -167,22 +167,22 @@ pipeline {
                 }
             }
         }
-        stage('docker build') {
-            steps {
-                node(AGENT_X64) {
-                    script {
-                        echo "env.ARTIFACT_URL_X64: ${env.ARTIFACT_URL_X64}"
-                        echo "env.ARTIFACT_URL_ARM64: ${env.ARTIFACT_URL_ARM64}"
+        // stage('docker build') {
+        //     steps {
+        //         node(AGENT_X64) {
+        //             script {
+        //                 echo "env.ARTIFACT_URL_X64: ${env.ARTIFACT_URL_X64}"
+        //                 echo "env.ARTIFACT_URL_ARM64: ${env.ARTIFACT_URL_ARM64}"
                         
-                        buildDockerImage(
-                            inputManifest: "manifests/${INPUT_MANIFEST}",
-                            artifactUrlX64: env.ARTIFACT_URL_X64,
-                            artifactUrlArm64: env.ARTIFACT_URL_ARM64
-                        )
-                    }
-                }
-            }
-        }
+        //                 buildDockerImage(
+        //                     inputManifest: "manifests/${INPUT_MANIFEST}",
+        //                     artifactUrlX64: env.ARTIFACT_URL_X64,
+        //                     artifactUrlArm64: env.ARTIFACT_URL_ARM64
+        //                 )
+        //             }
+        //         }
+        //     }
+        // }
     }
     post {
         success {

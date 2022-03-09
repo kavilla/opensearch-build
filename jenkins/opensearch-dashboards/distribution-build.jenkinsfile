@@ -193,7 +193,6 @@ pipeline {
                 script {
                     def stashed = lib.jenkins.Messages.new(this).get([
                         'build-and-test-linux-x64',
-                        'build-archive-linux-arm64',
                         'assemble-archive-and-test-linux-arm64'
                     ])
 

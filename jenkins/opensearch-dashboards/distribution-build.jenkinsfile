@@ -76,12 +76,12 @@ pipeline {
                                     string(name: 'CONTAINER_IMAGE', value: dockerAgent.image)
                                 ]
 
-                            String status = integTestResults.getResult()
-                            String icon = status == 'SUCCESS' ? ':white_check_mark:' : ':warning:'
+                            String integTestStatus = integTestResults.getResult()
+                            String integTestIcon = integTestStatus == 'SUCCESS' ? ':white_check_mark:' : ':warning:'
                             lib.jenkins.Messages.new(this).add(
                                 STAGE_NAME,
                                 lib.jenkins.Messages.new(this).get([STAGE_NAME]) + 
-                                    "\nInteg Tests (x64): ${icon} ${status} ${integTestResults.getAbsoluteUrl()}"
+                                    "\nInteg Tests (x64): ${integTestIcon} ${integTestStatus} ${integTestResults.getAbsoluteUrl()}"
                             )
 
                             def bwcTestResults = 
@@ -95,12 +95,12 @@ pipeline {
                                     string(name: 'CONTAINER_IMAGE', value: dockerAgent.image)
                                 ]
 
-                            String status = bwcTestResults.getResult()
-                            String icon = status == 'SUCCESS' ? ':white_check_mark:' : ':warning:'
+                            String bwcTestStatus = bwcTestResults.getResult()
+                            String bwcTestIcon = bwcTestStatus == 'SUCCESS' ? ':white_check_mark:' : ':warning:'
                             lib.jenkins.Messages.new(this).add(
                                 STAGE_NAME,
                                 lib.jenkins.Messages.new(this).get([STAGE_NAME]) + 
-                                    "\nBWC Tests (x64): ${icon} ${status} ${bwcTestResults.getAbsoluteUrl()}"
+                                    "\nBWC Tests (x64): ${bwcTestIcon} ${bwcTestStatus} ${bwcTestResults.getAbsoluteUrl()}"
                             )
                         }
                     }
@@ -171,12 +171,12 @@ pipeline {
                                             string(name: 'CONTAINER_IMAGE', value: dockerAgent.image)
                                         ]
 
-                                    String status = integTestResults.getResult()
-                                    String icon = status == 'SUCCESS' ? ':white_check_mark:' : ':warning:'
+                                    String integTestStatus = integTestResults.getResult()
+                                    String integTestIcon = integTestStatus == 'SUCCESS' ? ':white_check_mark:' : ':warning:'
                                     lib.jenkins.Messages.new(this).add(
                                         STAGE_NAME,
                                         lib.jenkins.Messages.new(this).get([STAGE_NAME]) + 
-                                            "\nInteg Tests (arm64): ${icon} ${status} ${integTestResults.getAbsoluteUrl()}"
+                                            "\nInteg Tests (arm64): ${integTestIcon} ${integTestStatus} ${integTestResults.getAbsoluteUrl()}"
                                     )
                                     
                                     def bwcTestResults = 
@@ -190,12 +190,12 @@ pipeline {
                                             string(name: 'CONTAINER_IMAGE', value: dockerAgent.image)
                                         ]
 
-                                    String status = bwcTestResults.getResult()
-                                    String icon = status == 'SUCCESS' ? ':white_check_mark:' : ':warning:'
+                                    String bwcTestStatus = bwcTestResults.getResult()
+                                    String bwcTestIcon = bwcTestStatus == 'SUCCESS' ? ':white_check_mark:' : ':warning:'
                                     lib.jenkins.Messages.new(this).add(
                                         STAGE_NAME,
                                         lib.jenkins.Messages.new(this).get([STAGE_NAME]) + 
-                                            "\nBWC Tests (arm64): ${icon} ${status} ${bwcTestResults.getAbsoluteUrl()}"
+                                            "\nBWC Tests (arm64): ${bwcTestIcon} ${bwcTestStatus} ${bwcTestResults.getAbsoluteUrl()}"
                                     )                                   
                                 }
                             }

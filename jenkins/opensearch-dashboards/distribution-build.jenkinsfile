@@ -10,7 +10,7 @@ pipeline {
     environment {
         AGENT_X64 = 'Jenkins-Agent-al2-x64-c54xlarge-Docker-Host'
         AGENT_ARM64 = 'Jenkins-Agent-al2-arm64-c6g4xlarge-Docker-Host'       
-        INTEG_TEST_JOB_NAME = 'integ-test-opensearch-dashboards'
+        INTEG_TEST_JOB_NAME = 'Playground/avillk-integ-test-opensearch-dashboards'
     }
     parameters {
         string(
@@ -167,22 +167,22 @@ pipeline {
                 }
             }
         }
-        stage('docker build') {
-            steps {
-                node(AGENT_X64) {
-                    script {
-                        echo "env.ARTIFACT_URL_X64: ${env.ARTIFACT_URL_X64}"
-                        echo "env.ARTIFACT_URL_ARM64: ${env.ARTIFACT_URL_ARM64}"
+        // stage('docker build') {
+        //     steps {
+        //         node(AGENT_X64) {
+        //             script {
+        //                 echo "env.ARTIFACT_URL_X64: ${env.ARTIFACT_URL_X64}"
+        //                 echo "env.ARTIFACT_URL_ARM64: ${env.ARTIFACT_URL_ARM64}"
                         
-                        buildDockerImage(
-                            inputManifest: "manifests/${INPUT_MANIFEST}",
-                            artifactUrlX64: env.ARTIFACT_URL_X64,
-                            artifactUrlArm64: env.ARTIFACT_URL_ARM64
-                        )
-                    }
-                }
-            }
-        }
+        //                 buildDockerImage(
+        //                     inputManifest: "manifests/${INPUT_MANIFEST}",
+        //                     artifactUrlX64: env.ARTIFACT_URL_X64,
+        //                     artifactUrlArm64: env.ARTIFACT_URL_ARM64
+        //                 )
+        //             }
+        //         }
+        //     }
+        // }
     }
     post {
         success {

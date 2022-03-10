@@ -65,24 +65,24 @@ pipeline {
                             echo "buildManifestUrl (x64): ${buildManifestUrl}"
                             echo "artifactUrl (x64): ${artifactUrl}"
 
-                            def integTestResults = 
-                                build job: INTEG_TEST_JOB_NAME,
-                                propagate: false,
-                                wait: true,
-                                parameters: [
-                                    string(name: 'TEST_MANIFEST', value: TEST_MANIFEST),
-                                    string(name: 'BUILD_MANIFEST_URL', value: buildManifestUrl),
-                                    string(name: 'AGENT_LABEL', value: AGENT_X64),
-                                    string(name: 'CONTAINER_IMAGE', value: dockerAgent.image)
-                                ]
+                            // def integTestResults = 
+                            //     build job: INTEG_TEST_JOB_NAME,
+                            //     propagate: false,
+                            //     wait: true,
+                            //     parameters: [
+                            //         string(name: 'TEST_MANIFEST', value: TEST_MANIFEST),
+                            //         string(name: 'BUILD_MANIFEST_URL', value: buildManifestUrl),
+                            //         string(name: 'AGENT_LABEL', value: AGENT_X64),
+                            //         string(name: 'CONTAINER_IMAGE', value: dockerAgent.image)
+                            //     ]
 
-                            String integTestStatus = integTestResults.getResult()
-                            String integTestIcon = integTestStatus == 'SUCCESS' ? ':white_check_mark:' : ':warning:'
-                            lib.jenkins.Messages.new(this).add(
-                                STAGE_NAME,
-                                lib.jenkins.Messages.new(this).get([STAGE_NAME]) + 
-                                    "\nInteg Tests (x64): ${integTestIcon} ${integTestStatus} ${integTestResults.getAbsoluteUrl()}"
-                            )
+                            // String integTestStatus = integTestResults.getResult()
+                            // String integTestIcon = integTestStatus == 'SUCCESS' ? ':white_check_mark:' : ':warning:'
+                            // lib.jenkins.Messages.new(this).add(
+                            //     STAGE_NAME,
+                            //     lib.jenkins.Messages.new(this).get([STAGE_NAME]) + 
+                            //         "\nInteg Tests (x64): ${integTestIcon} ${integTestStatus} ${integTestResults.getAbsoluteUrl()}"
+                            // )
 
                             def bwcTestResults = 
                                 build job: BWC_TEST_JOB_NAME,
@@ -160,24 +160,24 @@ pipeline {
                                     echo "buildManifestUrl (arm64): ${buildManifestUrl}"
                                     echo "artifactUrl (arm64): ${artifactUrl}"
 
-                                    def integTestResults = 
-                                        build job: INTEG_TEST_JOB_NAME,
-                                        propagate: false,
-                                        wait: true,
-                                        parameters: [
-                                            string(name: 'TEST_MANIFEST', value: TEST_MANIFEST),
-                                            string(name: 'BUILD_MANIFEST_URL', value: buildManifestUrl),
-                                            string(name: 'AGENT_LABEL', value: AGENT_ARM64),
-                                            string(name: 'CONTAINER_IMAGE', value: dockerAgent.image)
-                                        ]
+                                    // def integTestResults = 
+                                    //     build job: INTEG_TEST_JOB_NAME,
+                                    //     propagate: false,
+                                    //     wait: true,
+                                    //     parameters: [
+                                    //         string(name: 'TEST_MANIFEST', value: TEST_MANIFEST),
+                                    //         string(name: 'BUILD_MANIFEST_URL', value: buildManifestUrl),
+                                    //         string(name: 'AGENT_LABEL', value: AGENT_ARM64),
+                                    //         string(name: 'CONTAINER_IMAGE', value: dockerAgent.image)
+                                    //     ]
 
-                                    String integTestStatus = integTestResults.getResult()
-                                    String integTestIcon = integTestStatus == 'SUCCESS' ? ':white_check_mark:' : ':warning:'
-                                    lib.jenkins.Messages.new(this).add(
-                                        STAGE_NAME,
-                                        lib.jenkins.Messages.new(this).get([STAGE_NAME]) + 
-                                            "\nInteg Tests (arm64): ${integTestIcon} ${integTestStatus} ${integTestResults.getAbsoluteUrl()}"
-                                    )
+                                    // String integTestStatus = integTestResults.getResult()
+                                    // String integTestIcon = integTestStatus == 'SUCCESS' ? ':white_check_mark:' : ':warning:'
+                                    // lib.jenkins.Messages.new(this).add(
+                                    //     STAGE_NAME,
+                                    //     lib.jenkins.Messages.new(this).get([STAGE_NAME]) + 
+                                    //         "\nInteg Tests (arm64): ${integTestIcon} ${integTestStatus} ${integTestResults.getAbsoluteUrl()}"
+                                    // )
                                     
                                     def bwcTestResults = 
                                         build job: BWC_TEST_JOB_NAME,

@@ -96,9 +96,9 @@ git clone https://github.com/opensearch-project/opensearch-dashboards-functional
     if [ $SECURITY_ENABLED = "true" ]
     then
         echo "run security enabled tests"
-        yarn cypress:parallel:run-with-security:$COMPONENT_NAME
+        yarn cypress:run-with-security:$COMPONENT_NAME
     else
         echo "run security disabled tests"
-        yarn cypress:parallel:run-without-security:$COMPONENT_NAME
+        yarn cypress:run-without-security:$COMPONENT_NAME
     fi
 )

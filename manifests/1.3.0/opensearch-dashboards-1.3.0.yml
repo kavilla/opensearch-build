@@ -6,6 +6,7 @@ build:
 ci:
   image:
     name: opensearchstaging/ci-runner:ci-runner-centos7-v1
+    args: --ipc=host --shm-size=512m
 components:
   - name: OpenSearch-Dashboards
     repository: https://github.com/opensearch-project/OpenSearch-Dashboards.git

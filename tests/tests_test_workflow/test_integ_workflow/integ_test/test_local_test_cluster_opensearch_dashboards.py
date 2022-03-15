@@ -70,7 +70,7 @@ class LocalTestClusterOpenSearchDashboardsTests(unittest.TestCase):
 
         mock_service_opensearch.assert_called_once_with(
             "1.1.0",
-            {},
+            self.additional_cluster_config,
             self.security_enabled,
             self.dependency_installer_opensearch,
             os.path.join(self.work_dir, "local-test-cluster")
@@ -81,7 +81,7 @@ class LocalTestClusterOpenSearchDashboardsTests(unittest.TestCase):
 
         mock_service_opensearch_dashboards.assert_called_once_with(
             "1.1.0",
-            self.additional_cluster_config,
+            {},
             self.security_enabled,
             self.dependency_installer_opensearch_dashboards,
             os.path.join(self.work_dir, "local-test-cluster")

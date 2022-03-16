@@ -81,8 +81,21 @@ class ScriptFinder:
         return cls.__find_script("install.sh", paths)
 
     @classmethod
-    def find_integ_test_script(cls, component_name: str, git_dir: str) -> str:
-        return cls.__find_named_script("integtest.sh", component_name, git_dir)
+    def find_integ_test_script(cls, project: str, component_name: str, git_dir: str) -> str:
+        paths = [
+            os.path.realpath(os.path.join(cls.component_scripts_path, component_name, "integtest.sh")),
+            os.path.realpath(os.path.join(git_dir, "integtest.sh")),
+            os.path.realpath(os.path.join(git_dir, "scripts", "integtest.sh")),
+            os.path.realpath(
+                os.path.join(
+                    cls.default_scripts_path,
+                    project.replace(" ", "-").lower(),
+                    "integtest.sh",
+                )
+            ),
+        ]
+
+        return cls.__find_script("integtest.sh", paths)
 
     @classmethod
     def find_bwc_test_script(cls, component_name: str, git_dir: str) -> str:

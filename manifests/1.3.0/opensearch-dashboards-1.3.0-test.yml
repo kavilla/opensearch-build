@@ -7,11 +7,6 @@ components:
       test-configs:
         - with-security
         - without-security
-  - name: OpenSearch-Dashboards
-    integ-test:
-      test-configs:
-        - with-security
-        - without-security
   - name: queryWorkbenchDashboards
     integ-test:
       test-configs:

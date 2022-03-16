@@ -86,12 +86,10 @@ fi
 
 USERNAME=`echo $CREDENTIAL | awk -F ':' '{print $1}'`
 PASSWORD=`echo $CREDENTIAL | awk -F ':' '{print $2}'`
-pwd
-ls ..
-ls ../..
+
+npm install
 # MINOR_VERSION=${VERSION%.*}
 (
-    cd ../functionalTestDashboards
     if [ $SECURITY_ENABLED = "true" ]
     then
         echo "run security enabled tests"

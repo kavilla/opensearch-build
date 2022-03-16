@@ -93,7 +93,6 @@ ls ../..
 
 COMPONENT_NAME=$(basename "$PWD")
 # MINOR_VERSION=${VERSION%.*}
-git clone https://github.com/opensearch-project/opensearch-dashboards-functional-test
 (
     cd ../functionalTestDashboards
     if [ $SECURITY_ENABLED = "true" ]

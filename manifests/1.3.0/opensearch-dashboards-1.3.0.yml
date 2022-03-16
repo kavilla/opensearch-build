@@ -37,8 +37,8 @@ components:
     working_directory: gantt-chart
     ref: '1.3'
   - name: indexManagementDashboards
-    repository: https://github.com/opensearch-project/index-management-dashboards-plugin
+    repository: https://github.com/kavilla/index-management-dashboards-plugin
     ref: '1.3'
   - name: alertingDashboards
-    repository: https://github.com/opensearch-project/alerting-dashboards-plugin
+    repository:  https://github.com/kavilla/alerting-dashboards-plugin
     ref: '1.3'

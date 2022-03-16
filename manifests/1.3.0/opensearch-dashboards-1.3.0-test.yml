@@ -8,11 +8,13 @@ components:
         - with-security
         - without-security
   - name: queryWorkbenchDashboards
+    working_directory: workbench
     integ-test:
       test-configs:
         - with-security
         - without-security
   - name: observabilityDashboards
+    working_directory: dashboards-observability
     integ-test:
       test-configs:
         - with-security
@@ -28,6 +30,7 @@ components:
         - with-security
         - without-security
   - name: reportsDashboards
+    working_directory: dashboards-reports
     integ-test:
       test-configs:
         - with-security

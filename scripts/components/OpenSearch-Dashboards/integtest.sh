@@ -88,15 +88,14 @@ USERNAME=`echo $CREDENTIAL | awk -F ':' '{print $1}'`
 PASSWORD=`echo $CREDENTIAL | awk -F ':' '{print $2}'`
 
 # MINOR_VERSION=${VERSION%.*}
-git clone --branch $MINOR_VERSION --single-branch https://github.com/opensearch-project/opensearch-dashboards-functional-test ../../functionalTestDashboards || echo repo exists
 (
-    cd ../../functionalTestDashboards
+    cd ../functionalTestDashboards
     if [ $SECURITY_ENABLED = "true" ]
     then
         echo "run security enabled tests"
-        yarn cypress:parallel:run-with-security --spec 'cypress/integration/core-opensearch-dashboards/opensearch-dashboards/*.js'
+        yarn cypress:run-with-security --spec 'cypress/integration/core-opensearch-dashboards/opensearch-dashboards/*.js'
     else
         echo "run security disabled tests"
-        yarn cypress:parallel:run-without-security --spec 'cypress/integration/core-opensearch-dashboards/opensearch-dashboards/*.js'
+        yarn cypress:run-without-security --spec 'cypress/integration/core-opensearch-dashboards/opensearch-dashboards/*.js'
     fi
 )

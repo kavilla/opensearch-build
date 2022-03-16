@@ -88,11 +88,10 @@ USERNAME=`echo $CREDENTIAL | awk -F ':' '{print $1}'`
 PASSWORD=`echo $CREDENTIAL | awk -F ':' '{print $2}'`
 
 COMPONENT_NAME=$(basename "$PWD")
-
 # MINOR_VERSION=${VERSION%.*}
-git clone https://github.com/opensearch-project/opensearch-dashboards-functional-test ../../functionalTestDashboards || echo repo exists
+git clone https://github.com/opensearch-project/opensearch-dashboards-functional-test
 (
-    cd ../../functionalTestDashboards
+    cd ../functionalTestDashboards
     if [ $SECURITY_ENABLED = "true" ]
     then
         echo "run security enabled tests"

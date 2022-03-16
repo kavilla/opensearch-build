@@ -99,21 +99,21 @@ pipeline {
                             echo "buildManifestUrl (x64): ${buildManifestUrl}"
                             echo "artifactUrl (x64): ${artifactUrl}"
 
-                            def integTestResults = 
-                                build job: env.INTEG_TEST_JOB_NAME,
-                                propagate: false,
-                                wait: true,
-                                parameters: [
-                                    string(name: 'TEST_MANIFEST', value: TEST_MANIFEST),
-                                    string(name: 'BUILD_MANIFEST_URL', value: buildManifestUrl),
-                                    string(name: 'AGENT_LABEL', value: AGENT_X64)
-                                ]
+                            // def integTestResults = 
+                            //     build job: env.INTEG_TEST_JOB_NAME,
+                            //     propagate: false,
+                            //     wait: true,
+                            //     parameters: [
+                            //         string(name: 'TEST_MANIFEST', value: TEST_MANIFEST),
+                            //         string(name: 'BUILD_MANIFEST_URL', value: buildManifestUrl),
+                            //         string(name: 'AGENT_LABEL', value: AGENT_X64)
+                            //     ]
 
-                            createTestResultsMessage(
-                                testType: "Integ Tests (x64)",
-                                status: integTestResults.getResult(),
-                                absoluteUrl: integTestResults.getAbsoluteUrl()
-                            )
+                            // createTestResultsMessage(
+                            //     testType: "Integ Tests (x64)",
+                            //     status: integTestResults.getResult(),
+                            //     absoluteUrl: integTestResults.getAbsoluteUrl()
+                            // )
 
                             def bwcTestResults = 
                                 build job: env.BWC_TEST_JOB_NAME,
@@ -188,21 +188,21 @@ pipeline {
                                     echo "buildManifestUrl (arm64): ${buildManifestUrl}"
                                     echo "artifactUrl (arm64): ${artifactUrl}"
 
-                                    def integTestResults = 
-                                        build job: env.INTEG_TEST_JOB_NAME,
-                                        propagate: false,
-                                        wait: true,
-                                        parameters: [
-                                            string(name: 'TEST_MANIFEST', value: TEST_MANIFEST),
-                                            string(name: 'BUILD_MANIFEST_URL', value: buildManifestUrl),
-                                            string(name: 'AGENT_LABEL', value: AGENT_ARM64)
-                                        ]
+                                    // def integTestResults = 
+                                    //     build job: env.INTEG_TEST_JOB_NAME,
+                                    //     propagate: false,
+                                    //     wait: true,
+                                    //     parameters: [
+                                    //         string(name: 'TEST_MANIFEST', value: TEST_MANIFEST),
+                                    //         string(name: 'BUILD_MANIFEST_URL', value: buildManifestUrl),
+                                    //         string(name: 'AGENT_LABEL', value: AGENT_ARM64)
+                                    //     ]
 
-                                    createTestResultsMessage(
-                                        testType: "Integ Tests (arm64)",
-                                        status: integTestResults.getResult(),
-                                        absoluteUrl: integTestResults.getAbsoluteUrl()
-                                    )
+                                    // createTestResultsMessage(
+                                    //     testType: "Integ Tests (arm64)",
+                                    //     status: integTestResults.getResult(),
+                                    //     absoluteUrl: integTestResults.getAbsoluteUrl()
+                                    // )
 
                                     def bwcTestResults = 
                                         build job: env.BWC_TEST_JOB_NAME,

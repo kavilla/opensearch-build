@@ -68,7 +68,7 @@ class IntegTestSuiteOpenSearchDashboards(IntegTestSuite):
         ) as (test_cluster_endpoint, test_cluster_port):
             self.pretty_print_message("Running integration tests for " + self.component.name)
             os.chdir(self.work_dir)
-            return self.execute_integtest_sh(test_cluster_endpoint, test_cluster_port, security, config)
+            return self.execute_integtest_sh("OpenSearch-Dashboards", test_cluster_endpoint, test_cluster_port, security, config)
 
     @property
     def test_artifact_files(self):

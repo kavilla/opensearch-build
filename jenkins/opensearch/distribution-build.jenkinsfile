@@ -6,6 +6,7 @@ pipeline {
         AGENT_X64 = 'Jenkins-Agent-al2-x64-c54xlarge-Docker-Host'
         AGENT_ARM64 = 'Jenkins-Agent-al2-arm64-c6g4xlarge-Docker-Host'
         DEFAULT_INTEG_TEST_JOB_NAME = 'integ-test'
+        DEFAULT_BWC_TEST_JOB_NAME = 'bwc-test'
     }
     parameters {
         string(
@@ -22,6 +23,12 @@ pipeline {
             name: 'INTEG_TEST_JOB_NAME',
             description: "Name of integration test job that will be triggered, e.g. Playground/integ-test.",
             defaultValue: "integ-test",
+            trim: true
+        )
+        string(
+            name: 'BWC_TEST_JOB_NAME',
+            description: "Name of BWC test job that will be triggered, e.g. Playground/bwc-test.",
+            defaultValue: "bwc-test",
             trim: true
         )
         booleanParam(
@@ -42,6 +49,9 @@ pipeline {
                     env.INTEG_TEST_JOB_NAME = INTEG_TEST_JOB_NAME != '' ?
                         INTEG_TEST_JOB_NAME :
                         DEFAULT_INTEG_TEST_JOB_NAME
+                    env.BWC_TEST_JOB_NAME = BWC_TEST_JOB_NAME != '' ?
+                        BWC_TEST_JOB_NAME :
+                        DEFAULT_BWC_TEST_JOB_NAME
                 }
             }
         }
@@ -164,6 +174,22 @@ pipeline {
                                 status: integTestResults.getResult(),
                                 absoluteUrl: integTestResults.getAbsoluteUrl()
                             )
+
+                            def bwcTestResults = 
+                                build job: env.BWC_TEST_JOB_NAME,
+                                propagate: false,
+                                wait: true,
+                                parameters: [
+                                    string(name: 'TEST_MANIFEST', value: TEST_MANIFEST),
+                                    string(name: 'BUILD_MANIFEST_URL', value: buildManifestUrl),
+                                    string(name: 'AGENT_LABEL', value: AGENT_X64)
+                                ]
+
+                            createTestResultsMessage(
+                                testType: "BWC Tests (x64)",
+                                status: bwcTestResults.getResult(),
+                                absoluteUrl: bwcTestResults.getAbsoluteUrl()
+                            )
                         }
                     }
                     post {
@@ -207,6 +233,22 @@ pipeline {
                                 testType: "Integ Tests (arm64)",
                                 status: integTestResults.getResult(),
                                 absoluteUrl: integTestResults.getAbsoluteUrl()
+                            )
+
+                            def bwcTestResults = 
+                                build job: env.BWC_TEST_JOB_NAME,
+                                propagate: false,
+                                wait: true,
+                                parameters: [
+                                    string(name: 'TEST_MANIFEST', value: TEST_MANIFEST),
+                                    string(name: 'BUILD_MANIFEST_URL', value: buildManifestUrl),
+                                    string(name: 'AGENT_LABEL', value: AGENT_ARM64)
+                                ]
+
+                            createTestResultsMessage(
+                                testType: "BWC Tests (arm64)",
+                                status: bwcTestResults.getResult(),
+                                absoluteUrl: bwcTestResults.getAbsoluteUrl()
                             )
                         }
                     }

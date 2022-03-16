@@ -87,6 +87,10 @@ fi
 USERNAME=`echo $CREDENTIAL | awk -F ':' '{print $1}'`
 PASSWORD=`echo $CREDENTIAL | awk -F ':' '{print $2}'`
 
+pwd
+ls ..
+ls ../..
+
 COMPONENT_NAME=$(basename "$PWD")
 # MINOR_VERSION=${VERSION%.*}
 git clone https://github.com/opensearch-project/opensearch-dashboards-functional-test

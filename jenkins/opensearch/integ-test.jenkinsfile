@@ -28,11 +28,7 @@ pipeline {
     }
     stages {
         stage('verify-parameters') {
-            agent {
-                node {
-                    label AGENT_LABEL
-                }
-            }
+            agent none
             steps {
                 script {
                     if (AGENT_LABEL == '') {

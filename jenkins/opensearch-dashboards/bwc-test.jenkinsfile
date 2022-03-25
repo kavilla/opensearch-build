@@ -95,8 +95,10 @@ pipeline {
                 always {
                     script {
                         echo "hello"
-                        cat 'test-results/cypress-report/opensearch.log'
-                        cat 'test-results/cypress-report/opensearch-dashboards.log'
+                        sh'''
+                        cat test-results/cypress-report/opensearch.log
+                        cat test-results/cypress-report/opensearch-dashboards.log
+                        '''
                         uploadTestResults(
                             buildManifestFileName: BUILD_MANIFEST,
                             jobName: JOB_NAME,

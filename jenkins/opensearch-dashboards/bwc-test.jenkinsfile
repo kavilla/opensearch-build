@@ -102,9 +102,11 @@ pipeline {
                     }
                     postCleanup()
                 }
-                aborted {
-                    cat 'test-results/cypress-report/opensearch.log'
-                    cat 'test-results/cypress-report/opensearch-dashboards.log'
+                aborted { 
+                    script {
+                        cat 'test-results/cypress-report/opensearch.log'
+                        cat 'test-results/cypress-report/opensearch-dashboards.log'
+                    }
                 }
             }
         }

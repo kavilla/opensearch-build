@@ -96,8 +96,7 @@ pipeline {
                     script {
                         echo "hello"
                         sh'''
-                        cat test-results/cypress-report/opensearch.log
-                        cat test-results/cypress-report/opensearch-dashboards.log
+                        ls
                         '''
                         uploadTestResults(
                             buildManifestFileName: BUILD_MANIFEST,

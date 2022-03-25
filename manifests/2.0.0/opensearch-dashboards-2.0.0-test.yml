@@ -4,6 +4,7 @@ name: OpenSearch Dashboards
 ci:
   image:
     name: opensearchstaging/ci-runner:ci-runner-rockylinux8-opensearch-dashboards-integtest-v1
+    args: -e JAVA_HOME=/opt/java/openjdk-17
 components:
   - name: OpenSearch-Dashboards
     bwc-test:

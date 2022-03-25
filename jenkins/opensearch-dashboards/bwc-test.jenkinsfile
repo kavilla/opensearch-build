@@ -94,6 +94,9 @@ pipeline {
             post {
                 always {
                     script {
+                        echo "hello"
+                        cat 'test-results/cypress-report/opensearch.log'
+                        cat 'test-results/cypress-report/opensearch-dashboards.log'
                         uploadTestResults(
                             buildManifestFileName: BUILD_MANIFEST,
                             jobName: JOB_NAME,
@@ -101,12 +104,6 @@ pipeline {
                         )
                     }
                     postCleanup()
-                }
-                aborted { 
-                    script {
-                        cat 'test-results/cypress-report/opensearch.log'
-                        cat 'test-results/cypress-report/opensearch-dashboards.log'
-                    }
                 }
             }
         }

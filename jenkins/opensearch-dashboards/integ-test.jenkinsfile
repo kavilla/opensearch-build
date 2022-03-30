@@ -26,8 +26,8 @@ pipeline {
             trim: true
         )
         string(
-            name: 'OPENSEARCH_MANIFEST_ROOT_URL',
-            description: 'Optional OpenSearch root URL, e.g. https://ci.opensearch.org/ci/dbc/distribution-build-opensearch/2.0.0/98/linux/x64/builds/opensearch. Default: Latest OpenSearch for matching OpenSearch Dashboards version.',
+            name: 'OPENSEARCH_BUILD_ID',
+            description: 'Optional OpenSearch Build ID, default to `latest` OpenSearch for current version.',
             trim: true
         )
     }
@@ -94,7 +94,7 @@ pipeline {
                         buildManifest: BUILD_MANIFEST,
                         testManifest: "manifests/${TEST_MANIFEST}",
                         buildId: BUILD_ID,
-                        optionalManifestRootUrl: OPENSEARCH_MANIFEST_ROOT_URL,
+                        opensearchBuildId: OPENSEARCH_BUILD_ID,
                     )
                 }
             }

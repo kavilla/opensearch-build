@@ -5,7 +5,7 @@ void call(Map args = [:]) {
     String artifactRootUrl = buildManifest.getArtifactRootUrl(jobName, args.buildId)
     echo "Artifact root URL: ${artifactRootUrl}"
 
-    String paths = generatePaths(buildManifest, artifactRootUrl, optionalManifestRootUrl)
+    String paths = generatePaths(buildManifest, artifactRootUrl, args.optionalManifestRootUrl)
     echo "Paths: ${paths}"
 
     sh([

@@ -25,6 +25,11 @@ pipeline {
             description: 'The agent label where the tests should be executed, e.g. Jenkins-Agent-al2-x64-c54xlarge-Docker-Host.',
             trim: true
         )
+        string(
+            name: 'OPENSEARCH_ARTIFACT_ROOT_URL',
+            description: 'Optional OpenSearch artifact root url, defaults to `latest` OpenSearch for artifact root, e.g. https://ci.opensearch.org/ci/dbc/distribution-build-opensearch/2.0.0/98/linux/x64',
+            trim: true
+        )
     }
     stages {
         stage('verify-parameters') {
@@ -45,6 +50,9 @@ pipeline {
                     }
                     env.BUILD_JOB_NAME = currentBuild.upstreamBuilds ? 
                         currentBuild.upstreamBuilds[0].fullProjectName : 
+                        env.DEFAULT_BUILD_JOB_NAME
+                    env.BUILD_JOB_NAME = env.BUILD_JOB_NAME != JOB_NAME ?
+                        env.BUILD_JOB_NAME :
                         env.DEFAULT_BUILD_JOB_NAME
                 }
             }
@@ -83,11 +91,13 @@ pipeline {
                     echo "BUILD_MANIFEST: ${BUILD_MANIFEST}"
                     echo "BUILD_ID: ${BUILD_ID}"
 
+
                     runIntegTestScript(
                         jobName: BUILD_JOB_NAME,
                         buildManifest: BUILD_MANIFEST,
                         testManifest: "manifests/${TEST_MANIFEST}",
-                        buildId: BUILD_ID
+                        buildId: BUILD_ID,
+                        opensearchArtifactRootUrl: OPENSEARCH_ARTIFACT_ROOT_URL,
                     )
                 }
             }

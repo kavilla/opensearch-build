@@ -46,6 +46,9 @@ pipeline {
                     env.BUILD_JOB_NAME = currentBuild.upstreamBuilds ? 
                         currentBuild.upstreamBuilds[0].fullProjectName : 
                         env.DEFAULT_BUILD_JOB_NAME
+                    env.BUILD_JOB_NAME = env.BUILD_JOB_NAME !== JOB_BASE_NAME ?
+                        env.BUILD_JOB_NAME :
+                        env.DEFAULT_BUILD_JOB_NAME
                 }
             }
         }

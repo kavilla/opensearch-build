@@ -25,6 +25,11 @@ pipeline {
             description: 'The agent label where the tests should be executed, e.g. Jenkins-Agent-al2-x64-c54xlarge-Docker-Host.',
             trim: true
         )
+        string(
+            name: 'OPENSEARCH_BUILD_ID',
+            description: 'Optional OpenSearch Build ID, default to `latest` OpenSearch for current version.',
+            trim: true
+        )
     }
     stages {
         stage('verify-parameters') {
@@ -86,11 +91,13 @@ pipeline {
                     echo "BUILD_MANIFEST: ${BUILD_MANIFEST}"
                     echo "BUILD_ID: ${BUILD_ID}"
 
+
                     runIntegTestScript(
                         jobName: BUILD_JOB_NAME,
                         buildManifest: BUILD_MANIFEST,
                         testManifest: "manifests/${TEST_MANIFEST}",
-                        buildId: BUILD_ID
+                        buildId: BUILD_ID,
+                        opensearchBuildId: OPENSEARCH_BUILD_ID,
                     )
                 }
             }

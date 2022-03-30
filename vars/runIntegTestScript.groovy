@@ -5,7 +5,7 @@ void call(Map args = [:]) {
     String artifactRootUrl = buildManifest.getArtifactRootUrl(jobName, args.buildId)
     echo "Artifact root URL: ${artifactRootUrl}"
 
-    String paths = generatePaths(buildManifest, artifactRootUrl)
+    String paths = generatePaths(buildManifest, artifactRootUrl, args.opensearchBuildId)
     echo "Paths: ${paths}"
 
     sh([
@@ -16,13 +16,14 @@ void call(Map args = [:]) {
     ].join(' '))
 }
 
-String generatePaths(buildManifest, artifactRootUrl) {
+String generatePaths(buildManifest, artifactRootUrl, opensearchBuildId) {
     String name = buildManifest.build.name
     String version = buildManifest.build.version
     String platform = buildManifest.build.platform
     String architecture = buildManifest.build.architecture
     
-    String latestOpenSearchArtifactRootUrl = "https://ci.opensearch.org/ci/dbc/distribution-build-opensearch/${version}/latest/${platform}/${architecture}"
+    String latestOpenSearchArtifactRootUrl = 
+        "https://ci.opensearch.org/ci/dbc/distribution-build-opensearch/${version}/${opensearchBuildId ?: 'latest'}/${platform}/${architecture}"
     return name == 'OpenSearch' ? 
         "opensearch=${artifactRootUrl}" :
         "opensearch=${latestOpenSearchArtifactRootUrl} opensearch-dashboards=${artifactRootUrl}"

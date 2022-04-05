@@ -13,7 +13,7 @@ components:
     ref: '1.3'
   - name: functionalTestDashboards
     repository: https://github.com/kavilla/opensearch-dashboards-functional-test.git
-    ref: 'avillk/ad_imp'
+    ref: 'avillk/ad_imp_2'
   - name: securityDashboards
     repository: https://github.com/opensearch-project/security-dashboards-plugin.git
     ref: '1.3'

@@ -44,7 +44,7 @@ components:
   # - name: anomalyDetectionDashboards
   #   repository: https://github.com/opensearch-project/anomaly-detection-dashboards-plugin
   #   ref: '2.0'
-  # - name: notificationsDashboards
-  #   repository: https://github.com/opensearch-project/notifications.git
-  #   working_directory: dashboards-notifications
-  #   ref: main
+  - name: notificationsDashboards
+    repository: https://github.com/opensearch-project/notifications.git
+    working_directory: dashboards-notifications
+    ref: '2.0'

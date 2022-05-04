@@ -14,8 +14,8 @@ components:
     checks:
       - npm:package:version
   - name: functionalTestDashboards
-    repository: https://github.com/opensearch-project/opensearch-dashboards-functional-test.git
-    ref: main
+    repository: https://github.com/eugenesk24/opensearch-dashboards-functional-test.git
+    ref: fix-flaky-app-analytics
   - name: queryWorkbenchDashboards
     repository: https://github.com/opensearch-project/sql.git
     working_directory: workbench
@@ -23,7 +23,7 @@ components:
   - name: observabilityDashboards
     repository: https://github.com/opensearch-project/observability.git
     working_directory: dashboards-observability
-    ref: tags/2.0.0.0-rc1
+    ref: main
   - name: ganttChartDashboards
     repository: https://github.com/opensearch-project/dashboards-visualizations.git
     working_directory: gantt-chart

@@ -14,8 +14,8 @@ components:
     checks:
       - npm:package:version
   - name: functionalTestDashboards
-    repository: https://github.com/eugenesk24/opensearch-dashboards-functional-test.git
-    ref: fix-flaky-app-analytics
+    repository: https://github.com/kavilla/opensearch-dashboards-functional-test.git
+    ref: avillk/eugene/fix-flake-app
   # - name: queryWorkbenchDashboards
   #   repository: https://github.com/opensearch-project/sql.git
   #   working_directory: workbench

@@ -13,8 +13,8 @@ components:
     checks:
       - npm:package:version
   - name: functionalTestDashboards
-    repository: https://github.com/opensearch-project/opensearch-dashboards-functional-test.git
-    ref: main
+    repository: https://github.com/kavilla/opensearch-dashboards-functional-test.git
+    ref: avillk/2.0/sandbox
   - name: queryWorkbenchDashboards
     repository: https://github.com/opensearch-project/sql.git
     working_directory: workbench

@@ -85,7 +85,7 @@ pipeline {
                     echo "BUILD_ID: ${BUILD_ID}"
 
                     runIntegTestScript(
-                        jobName: BUILD_JOB_NAME,
+                        jobName: 'distribution-build-opensearch-dashboards',
                         componentName: 'functionalTestDashboards',
                         buildManifest: BUILD_MANIFEST,
                         testManifest: "manifests/${TEST_MANIFEST}",

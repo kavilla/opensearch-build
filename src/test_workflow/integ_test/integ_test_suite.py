@@ -59,8 +59,8 @@ class IntegTestSuite(abc.ABC):
         self.build_manifest = build_manifest
 
         self.repo = GitRepository(
-            self.component.repository,
-            self.component.commit_id,
+            'https://github.com/kavilla/opensearch-dashboards-functional-test.git' if self.component.name == 'functionalTestDashboards' else self.component.repository,
+            'avillk/sandbox/1.3' if self.component.name == 'functionalTestDashboards' else self.component.commit_id,
             os.path.join(self.work_dir, self.component.name),
             test_config.working_directory
         )

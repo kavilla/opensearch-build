@@ -21,7 +21,7 @@ void call(Map args = [:]) {
         'integ-test',
         "${args.testManifest}",
         "--component ${component}",
-        '--test-run-id 1',
+        "--test-run-id ${currentBuild.number}",
         "--paths ${paths}",
     ].join(' '))
 }
@@ -33,7 +33,7 @@ String generatePaths(buildManifest, artifactRootUrl) {
     String architecture = buildManifest.build.architecture
     String distribution = buildManifest.build.distribution
     
-    String latestOpenSearchArtifactRootUrl = "https://ci.opensearch.org/ci/dbc/distribution-build-opensearch/${version}/latest/${platform}/${architecture}/${distribution}"
+    String latestOpenSearchArtifactRootUrl = "https://ci.opensearch.org/ci/dbc/distribution-build-opensearch/${version}/3862/${platform}/${architecture}/${distribution}"
     return name == 'OpenSearch' ? 
         "opensearch=${artifactRootUrl}" :
         "opensearch=${latestOpenSearchArtifactRootUrl} opensearch-dashboards=${artifactRootUrl}"

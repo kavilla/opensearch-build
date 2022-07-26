@@ -13,4 +13,4 @@ components:
   - name: dashboards-maps
     repository: https://github.com/opensearch-project/dashboards-maps.git
     working_directory: src/plugins/custom_import_map
-    ref: main
+    ref: 2.x

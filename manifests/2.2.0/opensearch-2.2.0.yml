@@ -20,3 +20,9 @@ components:
     checks:
       - gradle:publish
       - gradle:properties:version
+  - name: geospatial
+    repository: https://github.com/opensearch-project/geospatial.git
+    ref: 2.x
+    checks:
+      - gradle:publish
+      - gradle:properties:version

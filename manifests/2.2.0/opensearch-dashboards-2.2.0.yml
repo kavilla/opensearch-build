@@ -10,7 +10,7 @@ components:
   - name: OpenSearch-Dashboards
     repository: https://github.com/opensearch-project/OpenSearch-Dashboards.git
     ref: 2.x
-  - name: dashboards-maps
-    repository: https://github.com/opensearch-project/dashboards-maps.git
+  - name: customImportMap
+    repository: https://github.com/Shivamdhar/dashboards-maps-1.git
     working_directory: src/plugins/custom_import_map
-    ref: 2.x
+    ref: release-customImportMap-for-2.2

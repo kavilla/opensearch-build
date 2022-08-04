@@ -9,7 +9,7 @@ ci:
 components:
   - name: OpenSearch-Dashboards
     repository: https://github.com/kavilla/OpenSearch-Dashboards-1.git
-    ref: demosite-dnd
+    ref: demosite
     checks:
       - npm:package:version
   - name: functionalTestDashboards
@@ -47,4 +47,8 @@ components:
     repository: https://github.com/opensearch-project/notifications.git
     working_directory: dashboards-notifications
     ref: main
+  - name: customImportMap
+    repository: https://github.com/opensearch-project/dashboards-maps.git
+    working_directory: src/plugins/custom_import_map
+    ref: '2.2'
 

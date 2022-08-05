@@ -68,7 +68,7 @@ fi
 
 mkdir -p $OUTPUT/plugins
 PLUGIN_FOLDER=$(basename "$PWD")
-PLUGIN_NAME=customImportMap
+PLUGIN_NAME=customImportMapDashboards
 # TODO: [CLEANUP] Needed OpenSearch Dashboards git repo to build the required modules for plugins
 # This makes it so there is a dependency on having Dashboards pulled already.
 cp -r ../$PLUGIN_FOLDER/ ../../../../OpenSearch-Dashboards/plugins

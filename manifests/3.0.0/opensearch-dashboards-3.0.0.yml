@@ -9,7 +9,7 @@ ci:
 components:
   - name: OpenSearch-Dashboards
     repository: https://github.com/kavilla/OpenSearch-Dashboards-1.git
-    ref: demosite
+    ref: demosite-883
     checks:
       - npm:package:version
   - name: functionalTestDashboards
